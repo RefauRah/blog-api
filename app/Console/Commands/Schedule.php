@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Payment as ModelsPayment;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -38,11 +39,22 @@ class Schedule extends Command
      */
     public function handle()
     {
-        DB::table('posts')
-        ->insert([
-            'title' => 'default',
-            'content' => 'default'
-        ]);
-        echo "Mission Complete";
+        $exp = ModelsPayment::all();
+        // $exp = DB::table('payment')->select('*');
+
+        $awal  = $exp->start_at; //waktu awal
+
+        $akhir = $exp->expired_at; //waktu akhir
+
+        $diff  = $akhir - $awal;
+
+        $jam   = floor($diff / (60 * 60));
+
+        if($jam <= '1')
+        {
+            echo "Mission Complete";
+        }else{
+            echo "Mission Failed";
+        }                        
     }
 }

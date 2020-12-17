@@ -22,10 +22,6 @@ class SendNotification extends Job
      */
     public function handle()
     {
-        DB::table('posts')
-        ->insert([
-            'title' => 'default',
-            'content' => 'default'
-        ]);
+        
     }
 }

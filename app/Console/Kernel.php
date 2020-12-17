@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Schedule::class,
-        Commands\DeleteEveryMinute::class,
+        
     ];
 
     /**
@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('minute:update')->cron('20 6 10 * * *');
-        $schedule->command('minute:delete')->everyMinute();
+        $schedule->command('minute:update')->everyMinute();
+        
     }
 }
