@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Jobs\SendNotification;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
@@ -20,9 +19,9 @@ Route::get('/', function () use ($router) {
 });
 
 Route::group(['prefix' => 'post'], function() {
-    dispatch(new SendNotification());
     Route::get('/', 'PostController@index');
     Route::post('/create', 'PostController@store');
+    Route::get('/send-notification', 'PostController@sendNotification');
 });
 
 

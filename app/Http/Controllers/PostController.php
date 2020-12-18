@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Jobs\SendNotification;
 use App\Models\Post;
 
 use Illuminate\Http\Request;
@@ -30,6 +32,15 @@ class PostController extends Controller
             'content' => $req['content']
         ]);
 
+        return response()->json([
+            'status' => 'succes',
+            'message' => 'Berhasil menyimpan data',
+        ]);
+    }
+
+    public function sendNotification(Request $req)
+    {
+        dispatch(new SendNotification());
         return response()->json([
             'status' => 'succes',
             'message' => 'Berhasil menyimpan data',

@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use App\Jobs\SendNotification;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Schedule::class,
-        Commands\DeleteEveryMinute::class,
+
     ];
 
     /**
@@ -26,7 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('minute:update')->cron('20 6 10 * * *');
-        $schedule->command('minute:delete')->everyMinute();
+        $update = $schedule->command('minute:update')->cron('20 6 10 * * *');
+        $schedule->job(new SendNotification())->everyMinute();
+        $schedule->call('App\Http\Controllers\PostController@sendNotification')->everyMinute();
     }
 }

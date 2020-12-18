@@ -21,4 +21,12 @@ abstract class Job implements ShouldQueue
     */
 
     use InteractsWithQueue, Queueable, SerializesModels;
+
+    protected function notif()
+    {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'selamat kamu beruntung'
+        ]);
+    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 class SendNotification extends Job
 {
+    // protected $posts;
     /**
      * Create a new job instance.
      *
@@ -12,7 +13,7 @@ class SendNotification extends Job
      */
     public function __construct()
     {
-        //
+        // $this->posts = $posts;
     }
 
     /**
@@ -22,10 +23,10 @@ class SendNotification extends Job
      */
     public function handle()
     {
-        DB::table('posts')
+        DB::table('schedule')
         ->insert([
-            'title' => 'default',
-            'content' => 'default'
+            'command' => 'default',
+            'schedule' => 'default'
         ]);
     }
 }
