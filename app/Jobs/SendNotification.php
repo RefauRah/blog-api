@@ -23,10 +23,6 @@ class SendNotification extends Job
      */
     public function handle()
     {
-        DB::table('schedule')
-        ->insert([
-            'command' => 'default',
-            'schedule' => 'default'
-        ]);
+
     }
 }
