@@ -41,11 +41,11 @@ class PostController extends Controller
 
     public function sendNotification(Request $req)
     {
-        dispatch(new SendNotification());
+        // dispatch(new SendNotification());
 
-        return response()->json([
-            'status' => 'succes',
-            'message' => true
-        ]);
+        // return response()->json([
+        //     'status' => 'succes',
+        //     'message' => true
+        // ]);
     }
 }

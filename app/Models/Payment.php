@@ -8,6 +8,7 @@ class Payment extends Model
 {
     protected $table = 'payments';
     protected $fillable = [
+        'status',
         'start_at',
         'expired_at'
     ];

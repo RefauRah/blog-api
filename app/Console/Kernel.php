@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $update = $schedule->command('minute:update')->cron('20 6 10 * * *');
-        $schedule->job(new SendNotification())->everyMinute();
-        $schedule->call('App\Http\Controllers\PostController@sendNotification')->everyMinute();
+        $schedule->command('minute:update')->everyMinute();
+        // $schedule->job(new SendNotification())->everyMinute();
+        // $schedule->call('App\Http\Controllers\PostController@sendNotification')->everyMinute();
     }
 }
