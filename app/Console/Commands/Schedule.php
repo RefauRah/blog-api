@@ -39,18 +39,13 @@ class Schedule extends Command
      */
     public function handle()
     {
-        $exp = new ModelsPayment;
-        // $exp = DB::table('payment')->select('*');
-
+        $exp = ModelsPayment::find(2);
         $awal  = strtotime($exp->start_at); //waktu awal
-
         $akhir = strtotime($exp->expired_at); //waktu akhir
-
         $diff  = $akhir - $awal;
-
         $jam   = floor($diff / (60 * 60));
 
-        if($jam >= '23')
+        if($jam <= '1')
         {
             echo "Mission Complete";
         }else{

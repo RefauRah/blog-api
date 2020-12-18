@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendNotification;
 use App\Models\Post;
+use App\Models\Payment;
 
 use Illuminate\Http\Request;
 
@@ -41,9 +42,10 @@ class PostController extends Controller
     public function sendNotification(Request $req)
     {
         dispatch(new SendNotification());
+
         return response()->json([
             'status' => 'succes',
-            'message' => 'Berhasil menyimpan data',
+            'message' => true
         ]);
     }
 }
